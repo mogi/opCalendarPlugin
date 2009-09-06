@@ -1,11 +1,12 @@
 <?php $default_week = array("sun","mon","tue","wed","thu","fri","sat")?>
 <?php slot('week_calendar') ?>
 
-
-<?php// echo $form->renderFormTag(url_for('calendar/updateSchedule') ,array('method' => 'post')) ?>
-<?php// echo $form->renderHiddenFields() ?>
+<label for="title">予定</label>
+<?php echo $form->getWidget('schedule')->setAttribute('rows', 1); ?>
+<?php echo $form->getWidget('schedule')->setAttribute('cols', 10); ?>
+<?php echo $form->renderFormTag(url_for('calendar/updateSchedule') ,array('method' => 'post')) ?>
+<?php echo $form->renderHiddenFields() ?>
 <?php echo $form['schedule']->render() ?>
-<label for="title">予定</label> <input class="input_text" name="title" id="title" value="" size="24" type="text">
 <select name="start_date">
 <?php
 while ($day = $calendar_week->fetch())

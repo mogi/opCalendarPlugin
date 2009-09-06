@@ -16,7 +16,7 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 9301 2008-05-27 01:08:46Z dwhittle $
  */
-class CalendarComponents extends sfActions
+class CalendarComponents extends sfComponents
 {
  /**
   * Executes index action
@@ -38,11 +38,8 @@ class CalendarComponents extends sfActions
 var_dump($this->month,$this->day);
     $this->calendar_week = new Calendar_Week($this->year, $this->month, $this->day, $this->week);
     $this->calendar_week->build();
-
-    $calendar = Doctrine::getTable('Calendar')->find($this->getUser()->getMemberId());
-    var_dump($calendar);
-    $this->form = new CalendarForm($calendar);
-
-//    $this->weekCalendar = Doctrine::getTable('WeekCalendar')->getWeekCalendar($this->member->getId(), $this->getUser()->getMemberId());
+    $calendarTable = Doctrine::getTable('WeekCalendar');
+    $calendar = Doctrine::getTable('WeekCalendar')->find($this->getUser()->getMemberId());
+    $this->form = new WeekCalendarForm($calendar);
   }
 }

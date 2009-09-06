@@ -1,0 +1,12 @@
+options:
+  charset: utf8
+
+Calendar:
+  columns:
+    id: { type: integer(4), primary: true, autoincrement: true }
+    member_id: { type: integer(4), notnull: true }
+    schedule: { type: string, notnull: true }
+    schedule_date: { type: string, notnull: true }
+  relations:
+    Member:
+      onDelete: cascade

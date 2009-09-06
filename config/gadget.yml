@@ -1,0 +1,6 @@
+WeekCalendar:
+  caption:
+    ja_JP: "週間カレンダー"
+  description:
+    ja_JP: "週間カレンダー。"
+  component: [calendar, weekCalendarComponent]

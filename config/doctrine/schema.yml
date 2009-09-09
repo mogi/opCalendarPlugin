@@ -1,11 +1,11 @@
 options:
   charset: utf8
 
-WeekCalendar:
+ScheduleCalendar:
   columns:
     member_id: { type: integer(4), notnull: true }
+    schedule_date: { type: date, notnull: true }
     schedule: { type: string, notnull: true }
-    schedule_date: { type: string, notnull: true }
   relations:
     Member:
       onDelete: cascade 

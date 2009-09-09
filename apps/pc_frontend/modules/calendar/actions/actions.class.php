@@ -26,4 +26,23 @@ class calendarActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
   }
+  public function executeUpdateCalendar(sfWebRequest $request) {
+    include_once('Calendar/Week.php');
+    //POSTリクエストかどうかを確認する
+    if ($request->isMethod(sfRequest::POST))
+    {
+
+      $calendar = Doctrine::getTable('ScheduleCalendar')->find($this->getUser()->getMemberId());
+      $param = $request->getParameter('calendar');
+      $param['member_id'] = $this->getUser()->getMember()->getId();
+
+      $scheduleCalendarForm = new ScheduleCalendarForm($calendar);
+      $scheduleCalendarForm->bind($param);
+        if ($scheduleCalendarForm->isValid())
+        {
+          $scheduleCalendarForm->save();
+        }
+      }
+    $this->redirect('@homepage');
+  }
 }

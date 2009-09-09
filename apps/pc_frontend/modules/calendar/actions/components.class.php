@@ -33,13 +33,13 @@ class CalendarComponents extends sfComponents
       $this->year = $request->getParameter('year', date('y'));
       $this->month = $request->getParameter('month', date('m'));
       $this->day = $request->getParameter('day', date('d'));
-      $this->week = $request->getParameter('week', date('w'));
     }
 var_dump($this->month,$this->day);
-    $this->calendar_week = new Calendar_Week($this->year, $this->month, $this->day, $this->week);
+    $this->calendar_week = new Calendar_Week($this->year, $this->month, $this->day, 0);
     $this->calendar_week->build();
-    $calendarTable = Doctrine::getTable('WeekCalendar');
-    $calendar = Doctrine::getTable('WeekCalendar')->find($this->getUser()->getMemberId());
-    $this->form = new WeekCalendarForm($calendar);
+
+    $calendar = Doctrine::getTable('ScheduleCalendar')->find($this->getUser()->getMemberId());
+    $this->form = new ScheduleCalendarForm( $calendar, array('calendar_week' => $this->calendar_week));
+    $this->plan = Doctrine::getTable('ScheduleCalendar')->find($this->getUser()->getMemberId());
   }
 }
